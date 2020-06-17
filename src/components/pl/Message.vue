@@ -22,24 +22,8 @@ export default {
   name: 'message',
   data() {
 	return{
-		commentList:[
-			{
-				userName:'宋阳坤',
-				comment:'真的无下限'
-			},
-			{
-				userName:'陈家俊',
-				comment:'好垃圾啊！'
-			},
-			{
-				userName:'陈冠宇',
-				comment:'加班是真的严重！'
-			},
-			{
-				userName:'景新海',
-				comment:'是国家规划布局内重点软件企业、国家863成果产业化基地、中国软件研发竞争力十强企业、中国软件出口工程示范企业，拥有国家计算机信息系统集成一级资质、国家公路交通工程专业承包通信、监控、收费综合系统工程资质，通过CMMI ML5级国际认证与ISO9001国际质量体系认证'
-			}
-		]
+		//localStorage.getItem("commetList") : 得到的字符串
+		commentList:JSON.parse(window.localStorage.getItem("commentList") || '[]')
     }
   },
   components: {
@@ -52,6 +36,15 @@ export default {
 	},
 	addComment(obj) {
 		this.commentList.push(obj)
+	}
+  },
+  watch:{ //监视
+	commentList:{
+		deep:true,
+		handler:function(value){
+			//将最新的值放到localstorage,注意这里需要将数组转string进行存储
+			window.localStorage.setItem("commentList",JSON.stringify(value))
+		}
 	}
   }
 }
