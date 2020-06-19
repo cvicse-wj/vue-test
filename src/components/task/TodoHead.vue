@@ -1,5 +1,5 @@
 <template>
-	<input placeholder="请输入你的任务名称,按enter键进行确认提交!" @keyup.enter="toSubmit" v-model="todo"/>
+	<input placeholder="请输入你的任务名称,按enter键进行确认提交!" @keyup.enter="toSubmit" v-model="todoName"/>
 </template>
 
 <script>
@@ -7,19 +7,33 @@
 		name:'TodoHead',
 		data(){
 			return{
-				todo:""
+				todoName:""
 			}
 		},
 		props:{
-			todos:Array
+			addTodo:Function
 		},
 		methods:{
 			toSubmit() {
-				this.todos.push(this.todo)
+				const{todoName,addTodo} = this;
+				if(!todoName) {
+					alert("请输入任务内容！");
+					return;
+				}else{
+					var obj={
+						todoName:todoName,
+						todoFlag:false
+					};
+					addTodo(obj);
+					this.todoName='';
+				}
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped="scoped">
+	input{
+		width: 19.25rem;
+	}
 </style>
