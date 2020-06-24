@@ -27,9 +27,5 @@ export default {
 </script>
 
 <style scoped>
-	button{
-			margin-left: 8.25rem;
-			width: 8.25rem;
-			display: inline-block;
-		}
+	
 </style>

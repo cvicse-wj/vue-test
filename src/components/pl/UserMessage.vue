@@ -8,7 +8,7 @@
 		<textarea v-model="comment" rows="8" cols="3"  style="width: 80%;" placeholder="按enter进行提交" @keyup.enter="addMessage"></textarea>
 		<br />
 		<br />
-		<button @click="addMessage" style="text-align: center;width: 50px;margin-left: 73%;" >提交</button>
+		<button @click="addMessage" class="btn btn-default" style="text-align: center;width: 50px;margin-left: 73%;" >提交</button>
 	</div>
 </template>
 

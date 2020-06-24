@@ -4,7 +4,7 @@
 			<input type="checkbox" v-model="todo.todoFlag"/>
 			<span>{{todo.todoName}}</span>
 		</label>
-		<button @click="deleteThis" v-show="showFlag">刪除</button>
+		<button class="btn btn-danger" @click="deleteThis" v-show="showFlag">刪除</button>
 	</li>
 </template>
 
@@ -31,10 +31,10 @@
 			handlerEnter:function(value){
 				if(value){
 					this.showFlag=true;
-					this.bgColor="aqua";
+					this.bgColor="#cccccc";
 				}else{
 					this.showFlag=false;
-					this.bgColor="white";
+					this.bgColor="#ffffff";
 				}
 			}
 		}
@@ -42,16 +42,36 @@
 </script>
 
 <style scoped="scoped">
-	input{
-		width: 50px;
-	}
-	button{
-		width: 3.125rem;
-		margin-left: 3.125rem;
-	}
-	li{
-		padding-top: 0.625rem;
-		padding-bottom: 0.625rem;
-		border: 1px solid aqua;
-	}
+li {
+    list-style: none;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid #ddd;
+  }
+
+li label {
+float: left;
+cursor: pointer;
+}
+
+li label li input {
+vertical-align: middle;
+margin-right: 6px;
+position: relative;
+top: -1px;
+}
+
+li button {
+float: right;
+margin-top: 3px;
+}
+
+li:before {
+content: initial;
+}
+
+li:last-child {
+border-bottom: none;
+}
 </style>

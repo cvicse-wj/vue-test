@@ -1,9 +1,11 @@
 <template>
-	<div>
+  <div class="todo-container">
+	<div class="todo-wrap">
 		<TaskHead :addTodo="addTodo"></TaskHead>
 		<TaskList :todos="todos" :deleteItem="deleteItem"></TaskList>
-		<TaskFooter :allNumber="allNumber" :selectNumber="selectNumber" :checkAll="checkAll"></TaskFooter>
+		<TaskFooter  :todos="todos" :checkAll="checkAll" :deleteSelItem="deleteSelItem"></TaskFooter>
 	</div>
+  </div>
 </template>
 
 <script>
@@ -23,17 +25,6 @@ export default{
 		TaskFooter
 	},
 	computed:{
-		allNumber:{
-			get:function(){
-				return this.todos.length
-			}
-		},
-		selectNumber:{
-			get:function(){
-				const array=this.todos.filter(t => t.todoFlag===true);
-				return array.length;
-			}
-		},
 		checkAll:{
 			get:function(){
 				return this.allNumber==this.selectNumber
@@ -56,13 +47,22 @@ export default{
 		},
 		deleteItem:function(index){
 			this.todos.splice(index,1)
+		},
+		deleteSelItem:function(){
+			this.todos=this.todos.filter(todo=>!todo.todoFlag)
 		}
 	}
 }
 </script>
 
 <style scoped="scoped">
-	div{
-		text-align: center;
-	}
+  .todo-container {
+	width: 600px;
+	margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+  }
 </style>
