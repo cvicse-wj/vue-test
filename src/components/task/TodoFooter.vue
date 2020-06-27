@@ -1,7 +1,7 @@
 <template>
 	<div class="todo-footer">
 		<input type="checkbox" v-model="checkAll"/>
-		<span>已完成{{selectNum}}/全部{{allNum}}</span>
+		<span>已完成{{selectNum}}/全部{{todos.length}}</span>
 		<button class="btn btn-danger" @click="deleteSelect" v-show="selectNum>0">清除已完成的任务</button>
 	</div>
 </template>
@@ -11,12 +11,12 @@
 		name:"TodoFooter",
 		data(){
 			return{
-				allNum:this.todos.length
 			}
 		},
 		props:{
 			todos:Array,
-			deleteSelItem:Function
+			deleteSelItem:Function,
+			selectAll:Function
 		},
 		methods:{
 			deleteSelect(){
@@ -28,10 +28,10 @@
 		computed:{
 			checkAll:{
 				get:function(){
-					return this.allNum===this.selectNum && this.selectNum>0
+					return this.todos.length===this.selectNum && this.selectNum>0
 				},
-				set:function(){
-					
+				set:function(value){
+					this.selectAll(value)
 				}
 			},
 			selectNum:function(){

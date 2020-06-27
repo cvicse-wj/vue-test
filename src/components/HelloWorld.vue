@@ -1,15 +1,17 @@
 <template>
   <div class="hello">
 	<button @click="flag=!flag">切换工程</button>
-	<Message v-show="flag"></Message>
+	<Task v-show="flag"></Task>
+	<!-- <Message v-show="flag"></Message> -->
 	<br />
-	<Task v-show="!flag"></Task>
+	<User v-show="!flag"></User>
   </div>
 </template>
 
 <script>
-import Message from '@/components/pl/Message.vue'
+//import Message from '@/components/pl/Message.vue'
 import Task from '@/components/task/Task.vue'
+import User from '@/components/user/User.vue'
 export default {
   name: 'HelloWorld',
   data(){
@@ -20,8 +22,9 @@ export default {
   props: {
   },
   components:{
-	Message,
-	Task
+	//Message,
+	Task,
+	User
   }
 }
 </script>

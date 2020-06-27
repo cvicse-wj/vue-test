@@ -3,7 +3,7 @@
 	<div class="todo-wrap">
 		<TaskHead :addTodo="addTodo"></TaskHead>
 		<TaskList :todos="todos" :deleteItem="deleteItem"></TaskList>
-		<TaskFooter  :todos="todos" :checkAll="checkAll" :deleteSelItem="deleteSelItem"></TaskFooter>
+		<TaskFooter  :todos="todos" :selectAll="selectAll" :deleteSelItem="deleteSelItem"></TaskFooter>
 	</div>
   </div>
 </template>
@@ -25,13 +25,7 @@ export default{
 		TaskFooter
 	},
 	computed:{
-		checkAll:{
-			get:function(){
-				return this.allNumber==this.selectNumber
-			},
-			set:function(){
-			}
-		}
+	
 	},
 	watch:{
 		todos:{
@@ -50,6 +44,11 @@ export default{
 		},
 		deleteSelItem:function(){
 			this.todos=this.todos.filter(todo=>!todo.todoFlag)
+		},
+		selectAll:function(value){
+			this.todos.forEach(todo => {
+				todo.todoFlag=value
+			})
 		}
 	}
 }
